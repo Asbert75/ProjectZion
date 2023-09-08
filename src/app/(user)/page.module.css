@@ -1,0 +1,170 @@
+.backgroundContainer {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-mid);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: rgb(0, 255, 239);
+    background: var(--background-gradient-45deg);
+}
+
+.projectName {
+    margin-bottom: 1rem;
+}
+
+.projectName h2 {
+    text-shadow: 0px 1px 0px var(--color-secondary-dark);
+    color: white;
+}
+
+.login {
+    position: relative;
+    background: var(--background-light);
+    padding: 1.5rem 3rem;
+    border-radius: 0.5rem;
+    width: 400px;
+}
+
+.login .header {
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.inputGroup svg {
+    position: absolute;
+    top: 1.9rem;
+    left: 0.5rem;
+}
+
+.inputGroup label {
+    font-size: 12px;
+}
+
+.inputGroup input {
+    padding: 1rem;
+    padding-left: 2rem;
+    padding-right: 0;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #cacccf;
+}
+
+.inputGroup input:focus {
+    border-image: var(--background-gradient-45deg) 1 round;
+}
+
+.inputGroupFirst {
+    margin-bottom: 30px;
+}
+
+.submitContainer {
+    text-align: center;
+    background: var(--background-dark);
+    border-radius: 5rem;
+}
+
+.submitContainer button {
+    height: 50px;
+    padding: 1rem;
+    margin-right: 15px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: var(--color-accent);
+    border-radius: 5rem;
+    transition: all var(--animation-duration) ease-in-out;
+    background: transparent;
+}
+
+.submitContainer button:hover {
+    cursor: pointer;
+    background: rgb(0, 255, 239);
+    background: var(--background-gradient-45deg);
+}
+
+.submitContainer button:focus {
+    background: rgb(0, 255, 239);
+    background: var(--background-gradient-45deg);
+}
+
+.submitLoading button:hover {
+    cursor: initial;
+    background: transparent !important;
+}
+
+.submitContainer>div {
+    margin-top: 1rem;
+}
+
+.signupContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    font-size: 12px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.forgotPassword {
+    margin-top: 10px;
+    text-align: right;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.forgotPassword a:hover {
+    opacity: 1;
+}
+
+.hasError {
+    color: var(--color-danger);
+}
+
+.hasError input {
+    border-bottom: 2px solid var(--color-danger);
+}
+
+.errorContainer {
+    height: 5rem;
+    width: 100%;
+    margin-bottom: 0rem;
+
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancelButtonContainer {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.cancelButtonContainer:hover {
+    opacity: 1;
+}
+
+.passwordConfirm {
+    margin-top: 30px;
+}
