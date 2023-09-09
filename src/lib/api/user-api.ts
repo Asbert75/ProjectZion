@@ -1,7 +1,5 @@
-import { BACKEND_BASE_URL, BACKEND_PORT } from '@/lib/util/constants';
-
 import PocketBase from 'pocketbase';
-const connection = new PocketBase(`${BACKEND_BASE_URL}:${BACKEND_PORT}`);
+const connection = new PocketBase('http://127.0.0.1:8090');
 
 const UserApi = {
     login: async (username: string, password: string) => {
@@ -9,11 +7,16 @@ const UserApi = {
             username,
             password
         )
+            .then(res => res.record)
+            .catch(error => error.data);
+    },
+    create: async (email: string, username: string, password: string) => {
+        return await connection.collection('users').create({ email, username, password, passwordConfirm: password, emailVisibility: true })
             .then(res => res)
             .catch(error => error.data);
     },
-    create: async (username: string, password: string, passwordConfirm: string) => {
-        return await connection.collection('users').create({ username, password, passwordConfirm })
+    sendResetPasswordEmail: async (email: string) => {
+        return await connection.collection('users').requestPasswordReset(email)
             .then(res => res)
             .catch(error => error.data);
     },
@@ -25,13 +28,13 @@ const UserApi = {
             .catch(error => error.data);
     },
     getUserById: async (userId: string) => {
-        return await fetch(`${BACKEND_BASE_URL}:${BACKEND_PORT}/api/collections/users/records/${userId}`)
+        return await fetch(`${process.env.BACKEND_URL}/api/collections/users/records/${userId}`)
             .then(res => res.json())
             .then(res => res)
             .catch(error => error.data);
     },
     getUsers: async () => {
-        return await fetch(`${BACKEND_BASE_URL}:${BACKEND_PORT}/api/collections/users/records?page=1&perPage=50&sort=username`)
+        return await fetch(`${process.env.BACKEND_URL}/api/collections/users/records?page=1&perPage=50&sort=username`)
             .then(res => res.json())
             .then(res => res)
             .catch(error => error.data);

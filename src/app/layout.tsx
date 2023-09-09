@@ -5,6 +5,9 @@ import { DM_Sans } from 'next/font/google'
 const dmSans = DM_Sans({ subsets: ['latin'] })
 
 import AuthProvider from './context/AuthProvider'
+import { Suspense } from 'react'
+import Loading from './loading'
+
 
 export const metadata: Metadata = {
   title: 'Project Zion',
@@ -19,11 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={dmSans.className}>
-        <AuthProvider>
-          <div className={'container'}>
-            {children}
-          </div>
-        </AuthProvider>
+        <Suspense fallback={<Loading />}>
+          <AuthProvider>
+            <div className={'container'}>
+              {children}
+            </div>
+          </AuthProvider>
+        </Suspense>
       </body>
     </html>
   )

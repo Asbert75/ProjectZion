@@ -7,7 +7,7 @@ export default function Client() {
     const { data: session } = useSession({
         required: true,
         onUnauthenticated() {
-            redirect('/api/auth/signin?callbackUrl=/client') // Always make callback the page you're currently redirecting from, to be redirected back
+            redirect('/signin')
         }
     })
 

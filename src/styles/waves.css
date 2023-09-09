@@ -1,0 +1,31 @@
+.wave {
+    position: absolute; 
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.topWave {
+    top: 0;
+}
+
+.bottomWave {
+    bottom: 0;
+    transform: rotate(180deg);
+}
+
+.wave svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 135px;
+}
+
+.topWave svg {
+    transform: rotateY(180deg);
+}
+
+.wave svg path {
+    fill: #fff;
+}

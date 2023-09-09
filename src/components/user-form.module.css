@@ -22,7 +22,7 @@
     color: white;
 }
 
-.signin {
+.container {
     position: relative;
     background: var(--background-light);
     padding: 1.5rem 3rem;
@@ -30,11 +30,20 @@
     width: 400px;
 }
 
-.signin .header {
+.container .header {
     text-align: center;
     margin-top: 1.5rem;
     margin-bottom: 2rem;
     font-size: 1.2rem;
+}
+
+.container .header p {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.header p span {
+    font-weight: bold;
 }
 
 .inputGroup {

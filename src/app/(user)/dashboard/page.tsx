@@ -1,12 +1,14 @@
-import useUser from '@/store/useUser';
+'use client';
+
 import styles from './page.module.css';
+import { useSession } from 'next-auth/react';
 
 export default function Dashboard() {
-    const username = useUser((state) => state.username);
+    const { data: session } = useSession();
 
     return (
         <div className={styles.dashboard}>
-            Welcome, {username}
+            Welcome, {session?.user.username}
         </div>
     );
 }

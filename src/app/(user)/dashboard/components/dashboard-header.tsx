@@ -1,14 +1,17 @@
+'use client';
+
 import styles from '../page.module.css';
 import Link from 'next/link';
-import useUser from "@/store/useUser";
+
+import { useSession } from 'next-auth/react';
 
 export default function DashboardHeader() {
-    const username = useUser((state) => state.username);
+    const { data: session } = useSession();
 
     return (
         <div className={styles.header}>
             <Link href="/"><h2>Project<span>Zion</span></h2></Link>
-            {username}
+            {session?.user?.username}
         </div>
     );
 }

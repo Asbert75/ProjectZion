@@ -3,17 +3,26 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 .navigation li {
     margin-left: 0.5rem;
 }
 
-.usersettings {
+.userSetting {
     display: flex;
     align-items: center;
 }
 
-.usersettings p {
+.userSetting p {
     margin-left: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.userSetting a {
+    margin-left: 2rem;
 }
