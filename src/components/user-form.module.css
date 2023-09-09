@@ -88,7 +88,6 @@
 .submitContainer button {
     height: 50px;
     padding: 1rem;
-    margin-right: 15px;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -98,7 +97,7 @@
     background: var(--color-accent);
     border-radius: 5rem;
     transition: all var(--animation-duration) ease-in-out;
-    background: transparent;
+    background: var(--background-dark);
 }
 
 .submitContainer button:hover {
@@ -114,7 +113,7 @@
 
 .submitLoading button:hover {
     cursor: initial;
-    background: transparent !important;
+    background: var(--background-dark) !important;
 }
 
 .submitContainer>div {

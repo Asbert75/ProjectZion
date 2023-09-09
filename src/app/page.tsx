@@ -3,6 +3,7 @@ import Header from '@/components/header';
 
 import TopWave from '@/components/top-wave';
 import BottomWave from '@/components/bottom-wave';
+import VerticalSpinner from '@/components/vertical-spinner';
 
 export default async function App() {
   return (
@@ -20,6 +21,8 @@ export default async function App() {
           </div>
           <BottomWave height={'50px'} width={'calc(150% + 1.3px)'}></BottomWave>
         </div>
+
+        <VerticalSpinner></VerticalSpinner>
 
         <div className={[styles.placeholder, 'ml2', 'mr2', 'roundedBox', 'keyLight'].join(" ")}></div>
       </div>

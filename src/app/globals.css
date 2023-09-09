@@ -2,6 +2,8 @@
 @import '../styles/waves.css';
 @import '../styles/vertical-spinner.css';
 
+@import '../styles/buttons.css';
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
@@ -199,11 +201,11 @@ h2 span {
 
 /* Shadows */
 .keyLight {
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.20);
 }
 
 .ambientLight {
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.20);
 }
 
 .ambientKeyLight {
@@ -228,6 +230,7 @@ input:focus::placeholder {
 
 .fa-link:hover {
   color: var(--color-secondary-dark) !important;
+  cursor: pointer;
 }
 
 /* Shapes */
