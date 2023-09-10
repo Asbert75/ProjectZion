@@ -1,6 +1,6 @@
 'use client';
-import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 import Link from 'next/link';
 
@@ -31,12 +31,22 @@ export default function UserForm(props: Props) {
     const [passwordFocused, setPasswordFocused] = useState(false);
     const [emailFocused, setEmailFocused] = useState(false);
 
+    const container = useRef(null);
+
     const [errorList, setErrorList] = useState([] as string[]);
     const [isLoading, setIsLoading] = useState(false);
+
+    function shake() {
+        container?.current?.classList.add('shake');
+        setTimeout(() => {
+            container?.current?.classList.remove('shake');
+        }, 500);
+    }
 
     async function Submit() {
         const errors: string[] = [];
         if (!username.length || !password.length) {
+            shake();
             errors.push('Please fill out all fields before proceeding');
             setErrorList(errors);
             setTimeout(() => {
@@ -49,6 +59,7 @@ export default function UserForm(props: Props) {
         if (props.type === 'signup') {
             const response = await UserApi.create(email, username, password);
             if (response.code === 400) {
+                shake();
                 handleRequestErrors(response.data, errors);
 
                 setIsLoading(false);
@@ -56,7 +67,12 @@ export default function UserForm(props: Props) {
             }
         }
 
-        await signIn('credentials', { username, password, redirect: true, callbackUrl: '/dashboard' });
+        const response = await signIn('credentials', { username, password, redirect: false, callbackUrl: '/dashboard' });
+        if (response?.error) {
+            shake();
+            if (!errorList.find(e => e.startsWith('Invalid'))) errorList.push('Invalid username or password');
+            setIsLoading(false);
+        } else router.push('/dashboard');
     }
 
     function onFocusChanged(field: string, value: boolean) {
@@ -73,7 +89,7 @@ export default function UserForm(props: Props) {
         }
 
         if (response?.password) {
-            if (response.password.code = 'validation_length_out_of_range') errors.push('Password must be between 8 and 72 characters.');
+            if (response.password.code = 'validation_length_out_of_range') errors.push('Password must be between 8 and 72 characters');
             else console.log('Unknown error', response.password);
         }
 
@@ -90,8 +106,8 @@ export default function UserForm(props: Props) {
             <div className={styles.projectName}>
                 <Link href="/"><h2>Project<span>Zion</span></h2></Link>
             </div>
-            <div className={[styles.container, 'ambientKeyLight', errorList.length ? 'shake' : ''].join(" ")}>
-                <div className={styles.cancelButtonContainer} onClick={() => router.back()}>
+            <div className={[styles.container, 'ambientKeyLight', errorList.length ? 'shake' : ''].join(" ")} ref={container}>
+                <div className={styles.cancelButtonContainer} onClick={() => router.push('/')}>
                     <FontAwesomeIcon
                         icon={faTimes}
                         style={{ fontSize: 18, color: '#949699' }}

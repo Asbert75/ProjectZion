@@ -1,5 +1,4 @@
-import styles from './page.module.css';
-import DashboardHeader from './components/dashboard-header';
+import styles from './dashboard.module.css';
 
 export default function Layout({
     children,
@@ -8,8 +7,28 @@ export default function Layout({
 }) {
     return (
         <div className={styles.container}>
-            <DashboardHeader></DashboardHeader>
-            {children}
+            <div className={styles.navigation}>
+                <ul>
+                    <li>
+                        ProjectZion
+                    </li>
+
+                    <li>
+                        User Logo
+                    </li>
+
+                    <li>
+                        Menu Choice
+                    </li>
+
+                    <li>
+                        Menu Choice
+                    </li>
+                </ul>
+            </div>
+            <div className={styles.view}>
+                {children}
+            </div>
         </div>
     )
 }

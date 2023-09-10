@@ -1,0 +1,107 @@
+.products {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.productCard {
+    width: 250px;
+    background: var(--background-mid);
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.productCard .pricing,
+.productCard .header {
+    border-radius: 5px;
+    position: relative;
+    background: var(--background-gradient-90deg);
+    padding: 1rem;
+    text-align: center;
+}
+
+.productCard .pricing {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    margin-top: 1rem;
+}
+
+.productCard .header {
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+}
+
+.productCard h4, .productCard h3 {
+    text-align: center;
+    color: white;
+    text-shadow: var(--full-shadow);
+}
+
+.productCard h4 {
+    font-size: 2.5rem;
+}
+
+.productCard h4 span {
+    font-size: 1rem;
+}
+
+.productCard ul {
+    list-style: none;
+}
+
+.productCard .information {
+    padding: 1rem;
+    font-weight: 600;
+}
+
+.productCard li {
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    border-bottom: 1px solid var(--tint);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* .productCard li::before {
+    content: "\2022";
+    color: var(--color-secondary);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -0.5em;
+} */
+
+.productCard button {
+    margin-top: 0.5rem;
+}
+
+.singleWave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.singleWave svg {
+    position: relative;
+    display: block;
+    width: calc(150% + 1.3px);
+    height: 15px;
+}
+
+.singleWave .shapeFill {
+    fill: #FFFFFF;
+}

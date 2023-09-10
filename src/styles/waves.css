@@ -27,5 +27,5 @@
 }
 
 .wave svg path {
-    fill: #fff;
+    fill: var(--background-light);
 }

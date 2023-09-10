@@ -45,7 +45,7 @@ export default function ForgotPassword() {
         <div className={styles.backgroundContainer}>
             <TopWave></TopWave>
 
-            <div className={[styles.container, 'ambientKeyLight', hasError ? 'shake' : ''].join(" ")}>
+            <div className={[styles.container, 'ambientKeyLight', hasError ? 'shake' : ''].join(" ")} style={{ width: '500px' }}>
                 <div className={styles.cancelButtonContainer} onClick={() => router.back()}>
                     <FontAwesomeIcon
                         icon={faTimes}

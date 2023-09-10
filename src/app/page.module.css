@@ -10,7 +10,7 @@
     height: 500px;
     margin-bottom: 150px;
     width: 100%;
-    padding: 4rem;
+    padding: 2rem 5rem;
 }
 
 .hero>.content {
@@ -21,6 +21,10 @@
 .hero>.content h3 {
     color: #fff;
     font-size: 2.5rem;
+    text-shadow: var(--key-shadow);
+}
+.hero span {
+    color: var(--color-accent);
 }
 
 .cta {
@@ -31,7 +35,6 @@
     background: var(--background-dark);
     margin-top: 2rem;
     border-radius: 3px;
-    transition: all 0.3s ease-in-out;
 }
 
 .cta p {
@@ -41,6 +44,7 @@
 
 .cta:hover {
     cursor: pointer;
+    background: var(--background-hover);
 }
 
 .notFound {
@@ -50,7 +54,7 @@
     align-items: center;
     justify-content: center;
 
-    height: calc(100vh - 95px);
+    height: calc(100vh - 200px);
     background: var(--background-gradient-45deg);
 }
 
@@ -58,11 +62,13 @@
     line-height: 9rem;
     font-size: 10rem;
     color: white;
+    text-shadow: var(--key-shadow);
 }
 
 .notFound p {
     font-weight: 600;
     color: white;
+    text-shadow: var(--key-shadow);
 }
 
 .pageLoading {

@@ -39,12 +39,16 @@
     background: var(--background-gradient-45deg);
     color: white;
 
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.20);
+    box-shadow: var(--ambient-shadow);
 }
 
 .btn:hover {
     cursor: pointer;
-    opacity: 0.8;
+    backgrounD: var(--background-gradient-hover);
+}
+
+.btnSecondary:hover {
+    background: var(--background-hover);
 }
 
 .btn[disabled] {

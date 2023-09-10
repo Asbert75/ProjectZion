@@ -1,9 +1,11 @@
 import styles from './page.module.css'
-import Header from '@/components/header';
+import Header from '@/components/header/header';
+import Footer from '@/components/footer';
 
 import TopWave from '@/components/top-wave';
 import BottomWave from '@/components/bottom-wave';
-import VerticalSpinner from '@/components/vertical-spinner';
+
+import Products from '@/components/home/products';
 
 export default async function App() {
   return (
@@ -13,7 +15,7 @@ export default async function App() {
         <div className={styles.hero}>
           <TopWave height={'50px'}></TopWave>
           <div className={styles.content}>
-            <h3>Say hello to <span>Zion</span>, a new fintech program that will <span>revolutionize</span> your workflow</h3>
+            <h3>This is a paragraph of <span>buzzwords</span>, it may look cool but its <span>absolutely</span> jibberish</h3>
 
             <button className={[styles.cta, 'ambientKeyLight'].join(" ")}>
               <p>VIEW PLANS</p>
@@ -22,10 +24,9 @@ export default async function App() {
           <BottomWave height={'50px'} width={'calc(150% + 1.3px)'}></BottomWave>
         </div>
 
-        <VerticalSpinner></VerticalSpinner>
-
-        <div className={[styles.placeholder, 'ml2', 'mr2', 'roundedBox', 'keyLight'].join(" ")}></div>
+        <Products></Products>
       </div>
+      <Footer></Footer>
     </>
   )
 }

@@ -1,5 +1,5 @@
 import styles from '@/app/page.module.css';
-import Header from '@/components/header';
+import Header from '@/components/header/header';
 import TopWave from '@/components/top-wave';
 import BottomWave from '@/components/bottom-wave';
 

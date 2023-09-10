@@ -1,0 +1,34 @@
+.background {
+    z-index: 100;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.container {
+    background: white;
+    padding: 1.5rem 3rem;
+    border-radius: 0.5rem;
+}
+
+.container .actions {
+    border-top: 1px solid var(--tint);
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    margin-top: 1.5rem;
+}
+
+.container button {
+    margin-right: 1rem;
+}
