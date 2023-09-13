@@ -1,21 +1,15 @@
-.container {
-    background: rgb(249, 250, 255);
-    height: 100vh;
-}
-
 .backgroundContainer {
     position: relative;
     width: 100vw;
     height: 100vh;
-    background-color: var(--background-mid);
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    background: rgb(0, 255, 239);
-    background: var(--background-gradient-45deg);
+    background: var(--background-mid);
+    background: var(--background-gradient);
 }
 
 .projectName {
@@ -24,22 +18,43 @@
 
 .projectName h2 {
     text-shadow: 0px 1px 0px var(--color-secondary-dark);
-    color: white;
+    color: var(--text-light);
 }
 
-.signin {
+.container {
     position: relative;
     background: var(--background-light);
     padding: 1.5rem 3rem;
     border-radius: 0.5rem;
     width: 400px;
+    box-shadow: var(--shadow-xl);
+    margin: 0 2rem;
 }
 
-.signin .header {
+.forgotPasswordContainer {
+    width: 500px;
+}
+
+@media screen and (max-width: 500px) {
+    .container {
+        width: 90vw;
+    }
+}
+
+.container .header {
     text-align: center;
     margin-top: 1.5rem;
     margin-bottom: 2rem;
     font-size: 1.2rem;
+}
+
+.container .header p {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.header p span {
+    font-weight: bold;
 }
 
 .inputGroup {
@@ -84,8 +99,7 @@
 .submitContainer button {
     height: 50px;
     padding: 1rem;
-    margin-right: 15px;
-    color: white;
+    color: var(--text-light);
     font-weight: bold;
     text-transform: uppercase;
     width: 100%;
@@ -94,7 +108,7 @@
     background: var(--color-accent);
     border-radius: 5rem;
     transition: all var(--animation-duration) ease-in-out;
-    background: transparent;
+    background: var(--background-dark);
 }
 
 .submitContainer button:hover {
@@ -110,7 +124,7 @@
 
 .submitLoading button:hover {
     cursor: initial;
-    background: transparent !important;
+    background: var(--background-dark) !important;
 }
 
 .submitContainer>div {
@@ -135,14 +149,14 @@
 }
 
 .forgotPassword a {
-    opacity: 0.7;
+    color: var(--text-muted);
 }
 
 .forgotPassword a:hover {
-    opacity: 1;
+    color: var(--color-primary);
 }
 
-.hasError {
+.hasError label {
     color: var(--color-danger);
 }
 
@@ -167,9 +181,4 @@
     right: 1.5rem;
     top: 1rem;
     cursor: pointer;
-    opacity: 0.6;
-}
-
-.cancelButtonContainer:hover {
-    opacity: 1;
 }

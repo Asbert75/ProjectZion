@@ -4,23 +4,31 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 2rem;
 }
 
 .productCard {
     width: 250px;
-    background: var(--background-mid);
+    background: var(--background-light);
     border-radius: 5px;
+    box-shadow: var(--shadow-xl);
 
     display: flex;
     flex-direction: column;
+
+    transition: all var(--animation-duration) ease-in-out;
+}
+
+.productCard:hover {
+    transform: scale(1.1);
 }
 
 .productCard .pricing,
 .productCard .header {
     border-radius: 5px;
     position: relative;
-    background: var(--background-gradient-90deg);
+    background: var(--background-gradient);
     padding: 1rem;
     text-align: center;
 }
@@ -36,9 +44,10 @@
     margin-bottom: 1rem;
 }
 
-.productCard h4, .productCard h3 {
+.productCard h4,
+.productCard h3 {
     text-align: center;
-    color: white;
+    color: var(--text-light);
     text-shadow: var(--full-shadow);
 }
 
@@ -64,7 +73,7 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     margin-top: 0.5rem;
-    border-bottom: 1px solid var(--tint);
+    border-bottom: 1px solid var(--color-tint);
 
     display: flex;
     flex-direction: row;
@@ -72,36 +81,6 @@
     gap: 0.5rem;
 }
 
-/* .productCard li::before {
-    content: "\2022";
-    color: var(--color-secondary);
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -0.5em;
-} */
-
 .productCard button {
     margin-top: 0.5rem;
-}
-
-.singleWave {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
-}
-
-.singleWave svg {
-    position: relative;
-    display: block;
-    width: calc(150% + 1.3px);
-    height: 15px;
-}
-
-.singleWave .shapeFill {
-    fill: #FFFFFF;
 }

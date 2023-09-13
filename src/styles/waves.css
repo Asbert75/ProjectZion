@@ -7,11 +7,11 @@
 }
 
 .topWave {
-    top: 0;
+    top: -1px;
 }
 
 .bottomWave {
-    bottom: 0;
+    bottom: -1px;
     transform: rotate(180deg);
 }
 

@@ -3,19 +3,23 @@
 // import Font Awesome CSS
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignIn, faSignOut, faCog, faChartColumn, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faSignIn, faSignOut, faDashboard, faRectangleList, faGun, faWrench, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
 import styles from './header.module.css'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 
 import { useState } from 'react';
 import { signOut, useSession } from 'next-auth/react';
 import Image from "next/image";
 
+import Modal from "../modal/modal";
+
 export default function Header() {
+    const router = useRouter();
     const { data: session } = useSession();
     const [isLoading, setIsLoading] = useState(false);
     const [showConfirmLogoutModal, setShowConfirmLogoutModal] = useState(false);
@@ -28,7 +32,7 @@ export default function Header() {
     }
 
     return (
-        <nav className={[styles.navigation, 'pt2', 'pb2'].join(" ")}>
+        <nav className={styles.navigation}>
             <div>
                 <Link href="/"><h2>Project<span>Zion</span></h2></Link>
             </div>
@@ -41,49 +45,60 @@ export default function Header() {
                                 <li title="Dashboard">
                                     <Link href='/dashboard'>
                                         <FontAwesomeIcon
-                                            icon={faChartColumn}
-                                            style={{ fontSize: 20, color: '#2c3035' }}
+                                            icon={faDashboard}
+                                            style={{ fontSize: 20 }}
                                             className={'fa-link'}
                                         />
                                         Dashboard
                                     </Link>
                                 </li>
-                                <li title="Settings">
-                                    <Link href='/settings'>
+                                <li title="Loadouts">
+                                    <Link href='/loadouts'>
                                         <FontAwesomeIcon
-                                            icon={faCog}
-                                            style={{ fontSize: 20, color: '#2c3035' }}
+                                            icon={faWrench}
+                                            style={{ fontSize: 20 }}
                                             className={'fa-link'}
                                         />
-                                        Settings
+                                        Loadouts
                                     </Link>
                                 </li>
-                                <li className={styles.signoutButton}>
-                                    <a onClick={() => setShowConfirmLogoutModal(true)}>
-                                        <FontAwesomeIcon title="Sign Out"
-                                            icon={faSignOut}
-                                            style={{ fontSize: 20, color: '#2c3035' }}
+                                <li className={styles.separate} title="Shop">
+                                    <Link href='/shop'>
+                                        <FontAwesomeIcon
+                                            icon={faCartShopping}
+                                            style={{ fontSize: 20 }}
                                             className={'fa-link'}
                                         />
-                                        Sign Out
-                                    </a>
+                                        Shop
+                                    </Link>
                                 </li>
-                                <li>
+
+                                <li className={styles.avatar} onClick={() => router.push('/user')}>
+                                    <p>Wicked</p>
                                     <Image
-                                        className={styles.avatar}
                                         src={session.user.avatar ? `http://127.0.0.1:8090/api/files/users/${session.user.id}/${session.user.avatar}?thumb=100x100` : ''}
                                         alt="User"
                                         width={32}
                                         height={32}
                                     />
                                 </li>
+                                <li>
+                                    <a onClick={() => setShowConfirmLogoutModal(true)}>
+                                        <FontAwesomeIcon
+                                            icon={faSignOut}
+                                            style={{ fontSize: 20 }}
+                                            className={'fa-link'}
+                                        />
+                                        Sign Out
+                                    </a>
+                                </li>
                             </>
                             :
-                            <li>
-                                <Link href='/signin' title="Sign In">
+                            <li title="Sign In">
+                                <Link href='/signin' >
                                     <FontAwesomeIcon
                                         icon={faSignIn}
-                                        style={{ fontSize: 20, color: '#2c3035' }}
+                                        style={{ fontSize: 20 }}
                                         className={'fa-link'}
                                     />
                                     Sign In
@@ -91,61 +106,17 @@ export default function Header() {
                             </li>}
                     </ul>
                 </div>
-
-                {/* {session && session.user ?
-                    (
-                        <div className={styles.userSetting}>
-                            <div className={styles.user}>
-                                {session.user.avatar ?
-                                    <Image className={styles.avatar} src={`http://127.0.0.1:8090/api/files/users/${session.user.id}/${session.user.avatar}?thumb=100x100`} alt="User" width={32} height={32}></Image> :
-                                    <FontAwesomeIcon
-                                        icon={faUserCircle}
-                                        style={{ fontSize: 22, color: '#2c3035' }}
-                                    />
-                                }
-                                <p>{session.user.username}</p>
-                            </div>
-                            <a onClick={() => setShowConfirmLogoutModal(true)}>
-                                <FontAwesomeIcon title="Sign Out"
-                                    icon={faSignOut}
-                                    style={{ fontSize: 22, color: '#2c3035' }}
-                                    className={'fa-link'}
-                                />
-                            </a>
-                        </div>
-                    ) :
-                    (
-                        <div>
-                            <Link href='/signin' title="Sign In">
-                                <FontAwesomeIcon
-                                    icon={faSignIn}
-                                    style={{ fontSize: 22, color: '#2c3035' }}
-                                    className={'fa-link'}
-                                />
-                            </Link>
-                        </div>
-                    )
-                } */}
             </div>
 
-            {showConfirmLogoutModal ?
-                <div className={styles.confirmLogoutModalContainer}>
-                    <div className='ambientLight'>
-                        <h3>Are you sure you want to sign out?</h3>
-
-                        <div className={styles.actions}>
-                            <button className='btn btnPrimary' onClick={() => onSignout()} disabled={isLoading}>
-                                Sign out
-                            </button>
-                            <button className='btn btnSecondary' onClick={() => setShowConfirmLogoutModal(false)} disabled={isLoading}>
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                :
-                null
-            }
+            <Modal
+                isVisible={showConfirmLogoutModal}
+                header='Are you sure you want to sign out?'
+                confirm='Sign Out'
+                isDisabled={isLoading}
+                confirmCallback={() => onSignout()}
+                cancelCallback={() => setShowConfirmLogoutModal(false)}
+            >
+            </Modal>
         </nav>
     );
 }

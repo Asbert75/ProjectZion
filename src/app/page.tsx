@@ -1,30 +1,40 @@
 import styles from './page.module.css'
 import Header from '@/components/header/header';
-import Footer from '@/components/footer';
-
-import TopWave from '@/components/top-wave';
-import BottomWave from '@/components/bottom-wave';
-
+import Footer from '@/components/footer/footer';
+import Hero from '@/components/hero/hero';
 import Products from '@/components/home/products';
+import IconWall from '@/components/icon-wall/icon-wall';
 
-export default async function App() {
+import Image from 'next/image';
+
+
+export default function App() {
   return (
     <>
       <Header></Header>
       <div>
-        <div className={styles.hero}>
-          <TopWave height={'50px'}></TopWave>
-          <div className={styles.content}>
-            <h3>This is a paragraph of <span>buzzwords</span>, it may look cool but its <span>absolutely</span> jibberish</h3>
+        <Hero></Hero>
 
-            <button className={[styles.cta, 'ambientKeyLight'].join(" ")}>
-              <p>VIEW PLANS</p>
-            </button>
-          </div>
-          <BottomWave height={'50px'} width={'calc(150% + 1.3px)'}></BottomWave>
+        <div className={styles.information}>
+          <h2>Curabitur in leo at eros malesuada</h2>
+          <p>Praesent laoreet velit quis nunc ullamcorper, id pretium dui dictum. Morbi convallis ligula eget ex ultrices lacinia.
+            Donec cursus ipsum sed viverra bibendum. Duis non neque orci. Praesent nisl nunc, tristique non libero vel, suscipit efficitur elit.
+            Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
         </div>
 
         <Products></Products>
+
+        <div className={styles.informationDark}>
+          <div>
+            <Image src={'/images/bottle.png'} alt='Hej' width={250} height={250} />
+            <p>Praesent laoreet velit quis nunc ullamcorper, id pretium dui dictum. Morbi convallis ligula eget ex ultrices lacinia.
+              Donec cursus ipsum sed viverra bibendum. Duis non neque orci. Praesent nisl nunc, tristique non libero vel, suscipit efficitur elit.
+              Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+          </div>
+        </div>
+
+        <IconWall></IconWall>
+
       </div>
       <Footer></Footer>
     </>

@@ -1,0 +1,16 @@
+.footer {
+    margin-top: 5rem;
+    background: var(--background-dark);
+}
+
+.footer>div {
+    max-width: 1300px;
+    height: 300px;
+    margin: 0 auto;
+    padding: 2rem 5rem;
+    padding-bottom: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

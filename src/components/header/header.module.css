@@ -8,22 +8,29 @@
     margin: 0 auto;
     padding: 2rem 5rem;
     gap: 2rem;
+    z-index: 2;
 }
 
 .navigation>div:last-of-type {
     display: flex;
 }
 
+.navigation h2 {
+    margin-bottom: 0;
+}
+
 .menu ul {
+    min-height: 50px;
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
     list-style: none;
 }
 
 .menu li:hover a,
 .menu li:hover svg {
-    color: var(--color-accent-dark) !important;
+    color: var(--color-primary);
 }
 
 .menu li a {
@@ -35,51 +42,29 @@
     padding: 0.5rem 0.75rem;
     cursor: pointer;
 
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: all var(--animation-duration) ease-in-out;
+    font-size: 0.75rem;
+    font-weight: 900;
 }
 
 .avatar {
-    border-radius: 100%;
-}
-
-.signoutButton {
-    margin-left: 2rem;
-}
-
-.confirmLogoutModalContainer {
-    z-index: 100;
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
+    padding: 0.5rem 0.75rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.35);
+    cursor: pointer;
 }
 
-.confirmLogoutModalContainer>div {
-    background: white;
-    padding: 1.5rem 3rem;
-    border-radius: 0.5rem;
+.avatar img {
+    border-radius: 100%;
 }
 
-.confirmLogoutModalContainer .actions {
-    border-top: 1px solid var(--tint);
-    padding-top: 1rem;
-    display: flex;
-    flex-direction: row;
-    margin-top: 1.5rem;
+.avatar p {
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 900;
 }
 
-.confirmLogoutModalContainer button {
-    margin-right: 1rem;
+.separate {
+    margin-right: 4rem;
 }

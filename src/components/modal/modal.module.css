@@ -19,16 +19,23 @@
     background: white;
     padding: 1.5rem 3rem;
     border-radius: 0.5rem;
+    margin: 2rem;
 }
 
 .container .actions {
-    border-top: 1px solid var(--tint);
+    border-top: 1px solid var(--color-tint);
     padding-top: 1rem;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 1.5rem;
 }
 
 .container button {
     margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+.childrenContainer {
+    margin-top: 0.5rem;
 }

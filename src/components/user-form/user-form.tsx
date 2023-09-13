@@ -12,10 +12,10 @@ import { faUser, faLock, faTimes, faAt } from '@fortawesome/free-solid-svg-icons
 import Spinner from '@/components/spinner';
 
 import { signIn } from 'next-auth/react'
-import UserApi from '@/lib/api/user-api';
+import UserApi from '@/api/user-api';
 
-import TopWave from './top-wave';
-import BottomWave from './bottom-wave';
+import TopWave from '../top-wave';
+import BottomWave from '../bottom-wave';
 
 type Props = {
     type: string
@@ -67,7 +67,7 @@ export default function UserForm(props: Props) {
             }
         }
 
-        const response = await signIn('credentials', { username, password, redirect: false, callbackUrl: '/dashboard' });
+        const response = await signIn('credentials', { username, password, redirect: false });
         if (response?.error) {
             shake();
             if (!errorList.find(e => e.startsWith('Invalid'))) errorList.push('Invalid username or password');
@@ -106,11 +106,12 @@ export default function UserForm(props: Props) {
             <div className={styles.projectName}>
                 <Link href="/"><h2>Project<span>Zion</span></h2></Link>
             </div>
-            <div className={[styles.container, 'ambientKeyLight', errorList.length ? 'shake' : ''].join(" ")} ref={container}>
+            <div className={[styles.container, errorList.length ? 'shake' : ''].join(" ")} ref={container}>
                 <div className={styles.cancelButtonContainer} onClick={() => router.push('/')}>
                     <FontAwesomeIcon
                         icon={faTimes}
-                        style={{ fontSize: 18, color: '#949699' }}
+                        style={{ fontSize: 18 }}
+                        className='fa-link'
                     />
                 </div>
 
@@ -118,15 +119,18 @@ export default function UserForm(props: Props) {
                     <h2>{props.type === 'signin' ? 'Sign In' : 'Sign Up'}</h2>
                 </div>
 
-                {props.type === 'signin' ? null :
+                {props.type === 'signin' ||
                     <div className={[styles.inputGroup, styles.inputGroupFirst, errorList.length ? styles.hasError : ''].join(" ")}>
                         <label>Email</label>
 
                         <FontAwesomeIcon
                             icon={faAt}
-                            style={errorList.length ? { fontSize: 18, color: '#ff6d6d' } : emailFocused ? { fontSize: 18, color: '#ff31b3' } : { fontSize: 18, color: '#949699' }}
+                            style={{ fontSize: 18 }}
+                            className={'text-muted'}
                         />
-                        <input type="text" placeholder="Choose email" onChange={(e) => setEmail(e.target.value)} tabIndex={1} onFocus={() => { onFocusChanged('email', true) }} onBlur={() => { onFocusChanged('email', false) }} />
+                        <input type="text" placeholder="Choose email"
+                            onChange={(e) => setEmail(e.target.value)} tabIndex={1}
+                            onFocus={() => { onFocusChanged('email', true) }} onBlur={() => { onFocusChanged('email', false) }} />
                     </div>
                 }
 
@@ -135,9 +139,12 @@ export default function UserForm(props: Props) {
 
                     <FontAwesomeIcon
                         icon={faUser}
-                        style={errorList.length ? { fontSize: 18, color: '#ff6d6d' } : usernameFocused ? { fontSize: 18, color: '#ff31b3' } : { fontSize: 18, color: '#949699' }}
+                        style={{ fontSize: 18 }}
+                        className={'text-muted'}
                     />
-                    <input type="text" placeholder={props.type === 'signin' ? "Enter username" : 'Choose a username'} onChange={(e) => setUsername(e.target.value)} tabIndex={1} onFocus={() => { onFocusChanged('username', true) }} onBlur={() => { onFocusChanged('username', false) }} />
+                    <input type="text" placeholder={props.type === 'signin' ? "Enter username" : 'Choose a username'}
+                        onChange={(e) => setUsername(e.target.value)} tabIndex={1}
+                        onFocus={() => { onFocusChanged('username', true) }} onBlur={() => { onFocusChanged('username', false) }} />
                 </div>
 
                 <div className={[styles.inputGroup, errorList.length ? styles.hasError : ''].join(" ")}>
@@ -145,14 +152,15 @@ export default function UserForm(props: Props) {
 
                     <FontAwesomeIcon
                         icon={faLock}
-                        style={errorList.length ? { fontSize: 18, color: '#ff6d6d' } : passwordFocused ? { fontSize: 18, color: '#ff31b3' } : { fontSize: 18, color: '#949699' }}
+                        style={{ fontSize: 18 }}
+                        className={'text-muted'}
                     />
-                    <input type="password" placeholder={props.type === 'signin' ? "Enter password" : 'Choose a password'} onChange={(e) => setPassword(e.target.value)} tabIndex={2} onFocus={() => { onFocusChanged('password', true) }} onBlur={() => { onFocusChanged('password', false) }} />
+                    <input type="password" placeholder={props.type === 'signin' ? "Enter password" : 'Choose a password'}
+                        onChange={(e) => setPassword(e.target.value)} tabIndex={2}
+                        onFocus={() => { onFocusChanged('password', true) }} onBlur={() => { onFocusChanged('password', false) }} />
                 </div>
 
-                {props.type === 'signin' ? <div className={styles.forgotPassword}>
-                    <Link href="/forgotpassword">Forgot password?</Link>
-                </div> : null}
+                {props.type === 'signin' && <div className={[styles.forgotPassword, isLoading ? 'disabled' : ''].join(" ")}><Link href="/forgotpassword">Forgot password?</Link></div>}
 
                 <div className={styles.errorContainer}>
                     {errorList.map((error, i) => <p className='error' key={i}>{error}</p>)}
@@ -167,9 +175,7 @@ export default function UserForm(props: Props) {
                     </button>
                 </div>
 
-                {props.type === 'signin' ? <div className={styles.signupContainer}>
-                    <Link href="/signup">Or Sign Up</Link>
-                </div> : null}
+                {props.type === 'signin' && <div className={[styles.signupContainer, isLoading ? 'disabled' : ''].join(" ")}><Link href="/signup">Or Sign Up</Link></div>}
             </div>
 
             <BottomWave></BottomWave>

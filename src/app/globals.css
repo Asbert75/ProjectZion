@@ -5,6 +5,7 @@
 @import '../styles/vertical-spinner.css';
 
 @import '../styles/buttons.css';
+@import '../styles/typography.css';
 
 * {
   box-sizing: border-box;
@@ -20,35 +21,34 @@ body {
   height: 100vh;
   overflow-x: hidden;
 
-  --color-light: #fff;
-  --color-dark: #2c3035;
-  --color-hover: #4a5159;
-  --color-secondary: rgb(255, 49, 179);
-  --color-secondary-dark: rgb(182, 14, 120);
-  --color-accent: rgb(209, 141, 15);
-  --color-accent-dark: rgb(209, 141, 15);
+  --text-light: #fff;
+  --text-mid: #8890aa;
+  --text-muted: #b0b7c8;
+  --text-dark: #4a5372;
 
-  --background-light: rgb(252, 252, 255);
-  --background-mid: rgb(249, 250, 255);
+  --color-primary: #2c99f8;
+  --color-secondary: #622cf8;
+  --color-tint: #e1e8f0;
+
+  --background-light: #fff;
+  --background-mid: #f5f6fa;
   --background-dark: #121416;
   --background-hover: #262a2e;
 
-  --tint: rgb(212, 212, 212);
+  --background-gradient: linear-gradient(45deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --background-gradient-reverse: linear-gradient(45deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+  --background-gradient-hover: linear-gradient(45deg, var(--color-primary) 20%, var(--color-secondary) 100%);
 
-  --background-gradient-45deg: linear-gradient(45deg, rgb(255, 137, 47) 0%, rgb(255, 49, 179) 100%);
-  --background-gradient-90deg: linear-gradient(90deg, rgb(255, 137, 47) 0%, rgb(255, 49, 179) 100%);
-  --background-gradient-reverse: linear-gradient(90deg, rgb(255, 49, 179) 0%, rgb(255, 137, 47) 100%);
-  --background-gradient-hover: linear-gradient(45deg, hsl(35, 100%, 61%) 0%, hsl(340, 100%, 58%) 100%);
+  --color-danger: #f76f7d;
+  --color-success: #23d692;
+  --color-warning: #fac545;
 
-  --color-danger: #f04646;
-  --color-success: #4fff96;
-  --color-warning: #fff153;
+  --shadow-xl: 0 0px 10px rgba(52, 74, 181, 0.15), 0 10px 30px rgba(52, 74, 181, 0.1);
+  --shadow-l: 0 5px 20px rgba(52, 74, 181, 0.10), 0 8px 8px rgba(52, 74, 181, 0.05);
+  --shadow-m: 0 1px 10px rgba(52, 74, 181, 0.10), 0 5px 5px rgba(52, 74, 181, 0.05);
+  --shadow-s: 0 2px 6px rgba(52, 74, 181, 0.10), 0 2px 5px rgba(52, 74, 181, 0.05);
 
   --animation-duration: 0.3s;
-
-  --key-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  --ambient-shadow: 0 1px 5px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-  --full-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 body {
@@ -67,185 +67,39 @@ h5 {
   font-family: inherit;
 }
 
-/* Typography Styling */
-p {
-  color: var(--color-dark);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: all var(--animation-duration) ease-in-out;
-}
-
-a:hover {
-  color: var(--color-accent-dark);
-}
-
-h2 {
-  font-weight: 900;
-  color: var(--color-dark);
-}
-
-h2 span {
-  font-weight: normal !important;
-}
-
-.color-success {
-  color: var(--color-success);
-}
-
-.color-danger {
-  color: var(--color-danger);
-}
-
-.color-warning {
-  color: var(--color-warning);
-}
-
-/* Functional Classes */
-
-/* Paddings */
-.pl1 {
-  padding-left: 1rem;
-}
-
-.pl2 {
-  padding-left: 2rem;
-}
-
-.pr1 {
-  padding-right: 1rem;
-}
-
-.pr2 {
-  padding-right: 2rem;
-}
-
-.pb1 {
-  padding-bottom: 1rem;
-}
-
-.pb2 {
-  padding-bottom: 2rem;
-}
-
-.pt1 {
-  padding-top: 1rem;
-}
-
-.pt2 {
-  padding-top: 2rem;
-}
-
-.pl5 {
-  padding-left: 5rem;
-}
-
-.pr5 {
-  padding-right: 5rem;
-}
-
-.pb5 {
-  padding-bottom: 5rem;
-}
-
-.pt5 {
-  padding-top: 5rem;
-}
-
-/* Margins */
-.ml1 {
-  margin-left: 1rem;
-}
-
-.ml2 {
-  margin-left: 2rem;
-}
-
-.mr1 {
-  margin-right: 1rem;
-}
-
-.mr2 {
-  margin-right: 2rem;
-}
-
-.mb1 {
-  margin-bottom: 1rem;
-}
-
-.mb2 {
-  margin-bottom: 2rem;
-}
-
-.mt1 {
-  margin-top: 1rem;
-}
-
-.mt2 {
-  margin-top: 2rem;
-}
-
-.ml5 {
-  margin-left: 5rem;
-}
-
-.mr5 {
-  margin-right: 5rem;
-}
-
-.mb5 {
-  margin-bottom: 5rem;
-}
-
-.mt5 {
-  margin-top: 5rem;
-}
-
-/* Content Styling */
-.roundedBox {
-  border-radius: 3px;
-}
-
-/* Shadows */
-.keyLight {
-  /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.20); */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-}
-
-.ambientLight {
-  /* box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.15); */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-.ambientKeyLight {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-/* Errors */
-p.error {
-  font-size: 0.75rem;
-  color: var(--color-danger);
-}
-
 /* Inputs */
+input::placeholder {
+  color: var(--text-muted);
+}
+
 input:focus::placeholder {
   color: transparent;
 }
 
-.fa-circle-check {
-  color: var(--color-success) !important;
-}
-.fa-circle-xmark {
-  color: var(--color-danger);
-}
-
-.fa-link {
-  transition: color var(--animation-duration) ease-in-out;
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.fa-link:hover {
-  color: var(--color-accent-dark) !important;
-  cursor: pointer;
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--background-mid);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--background-dark);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--background-hover);
+}
+
+/* Global Function Classes */
+.disabled {
+  cursor: initial;
+  pointer-events: none;
+  opacity: 0.8;
 }

@@ -8,10 +8,10 @@ export default function Unauthorized() {
         <>
             <Header></Header>
             <div className={styles.notFound}>
-                <TopWave></TopWave>
+                <TopWave height={'50px'}></TopWave>
                 <h1>403</h1>
-                <p>You are not authorized to visit that page.</p>
-                <BottomWave></BottomWave>
+                <p>You are not authorized to view that page.</p>
+                <BottomWave height={'100px'} width={'calc(105% + 1.3px)'}></BottomWave>
             </div>
         </>
     );

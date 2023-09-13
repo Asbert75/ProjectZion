@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import styles from '@/components/user-form.module.css';
+import styles from '@/components/user-form/user-form.module.css';
 import TopWave from '@/components/top-wave';
 import BottomWave from '@/components/bottom-wave';
 
@@ -12,7 +12,7 @@ import { faAt, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import Spinner from '@/components/spinner';
 
-import UserApi from '@/lib/api/user-api';
+import UserApi from '@/api/user-api';
 
 export default function ForgotPassword() {
     const router = useRouter();
@@ -45,11 +45,12 @@ export default function ForgotPassword() {
         <div className={styles.backgroundContainer}>
             <TopWave></TopWave>
 
-            <div className={[styles.container, 'ambientKeyLight', hasError ? 'shake' : ''].join(" ")} style={{ width: '500px' }}>
+            <div className={[styles.container, styles.forgotPasswordContainer, hasError ? 'shake' : ''].join(" ")}>
                 <div className={styles.cancelButtonContainer} onClick={() => router.back()}>
                     <FontAwesomeIcon
                         icon={faTimes}
-                        style={{ fontSize: 18, color: '#949699' }}
+                        style={{ fontSize: 18 }}
+                        className='fa-link'
                     />
                 </div>
 
@@ -79,7 +80,8 @@ export default function ForgotPassword() {
 
                             <FontAwesomeIcon
                                 icon={faAt}
-                                style={hasError ? { fontSize: 18, color: '#ff6d6d' } : emailFocused ? { fontSize: 18, color: '#ff31b3' } : { fontSize: 18, color: '#949699' }}
+                                style={{ fontSize: 18 }}
+                                className={'text-muted'}
                             />
                             <input type="email" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} onFocus={() => { setEmailFocused(true); setHasError(false); }} onBlur={() => { setEmailFocused(false) }} />
                         </div>
