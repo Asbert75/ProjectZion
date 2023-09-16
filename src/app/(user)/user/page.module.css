@@ -10,6 +10,7 @@
 
 .content {
     width: 1300px;
+    max-width: 90vw;
     margin: 0 auto;
     margin-top: 15rem;
     padding: 1rem;

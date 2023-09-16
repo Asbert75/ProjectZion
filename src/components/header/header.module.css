@@ -68,3 +68,14 @@
 .separate {
     margin-right: 4rem;
 }
+
+.logotype a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logotype a svg {
+    margin-right: 0.5rem;
+    color: var(--color-primary);
+}

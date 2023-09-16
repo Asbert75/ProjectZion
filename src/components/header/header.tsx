@@ -3,7 +3,7 @@
 // import Font Awesome CSS
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignIn, faSignOut, faDashboard, faRectangleList, faGun, faWrench, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faSignIn, faSignOut, faDashboard, faRectangleList, faGun, faWrench, faCartShopping, faFlask } from '@fortawesome/free-solid-svg-icons';
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
@@ -31,10 +31,18 @@ export default function Header() {
         setIsLoading(false);
     }
 
+    console.log('Header', session);
+
     return (
         <nav className={styles.navigation}>
-            <div>
-                <Link href="/"><h2>Project<span>Zion</span></h2></Link>
+            <div className={styles.logotype}>
+                <Link href="/">
+                    <FontAwesomeIcon
+                        icon={faFlask}
+                        style={{ fontSize: 31 }}
+                    />
+                    <h2>Zion<span>Labs</span></h2>
+                </Link>
             </div>
 
             <div>
@@ -74,7 +82,7 @@ export default function Header() {
                                 </li>
 
                                 <li className={styles.avatar} onClick={() => router.push('/user')}>
-                                    <p>Wicked</p>
+                                    {/* <p>Wicked</p> */}
                                     <Image
                                         src={session.user.avatar ? `http://127.0.0.1:8090/api/files/users/${session.user.id}/${session.user.avatar}?thumb=100x100` : ''}
                                         alt="User"

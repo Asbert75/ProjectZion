@@ -50,8 +50,8 @@ export default function IconWall() {
                 // start: 'top bottom',
                 opacity: 1,
                 z: 0,
-                ease: 'power1',
-                duration: 1.5
+                duration: 1,
+                delay: 0.25
             }
         )
     }, [])
