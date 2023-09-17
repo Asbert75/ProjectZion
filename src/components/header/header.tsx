@@ -3,7 +3,7 @@
 // import Font Awesome CSS
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignIn, faSignOut, faDashboard, faRectangleList, faGun, faWrench, faCartShopping, faFlask } from '@fortawesome/free-solid-svg-icons';
+import { faSignIn, faSignOut, faDashboard, faRectangleList, faGun, faWrench, faCartShopping, faFlask, faCoins } from '@fortawesome/free-solid-svg-icons';
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
@@ -31,8 +31,6 @@ export default function Header() {
         setIsLoading(false);
     }
 
-    console.log('Header', session);
-
     return (
         <nav className={styles.navigation}>
             <div className={styles.logotype}>
@@ -41,13 +39,23 @@ export default function Header() {
                         icon={faFlask}
                         style={{ fontSize: 31 }}
                     />
-                    <h2>Zion<span>Labs</span></h2>
+                    <h2>Eternal<span>Labs</span></h2>
                 </Link>
             </div>
 
             <div>
                 <div className={styles.menu}>
                     <ul>
+                        <li title="Casino">
+                            <Link href='/casino'>
+                                <FontAwesomeIcon
+                                    icon={faCoins}
+                                    style={{ fontSize: 20 }}
+                                    className={'fa-link'}
+                                />
+                                Casino
+                            </Link>
+                        </li>
                         {session && session.user ?
                             <>
                                 <li title="Dashboard">

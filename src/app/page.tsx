@@ -7,7 +7,7 @@ import IconWall from '@/components/icon-wall/icon-wall';
 
 import Image from 'next/image';
 import Loadouts from '@/components/loadouts/loadouts';
-
+import Roulette from '@/components/roulette/roulette';
 
 export default function App() {
   return (
@@ -34,8 +34,6 @@ export default function App() {
       </div>
 
       <IconWall></IconWall>
-      
-      <Loadouts></Loadouts>
 
       <Footer></Footer>
     </>

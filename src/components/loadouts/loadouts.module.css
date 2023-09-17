@@ -1,0 +1,90 @@
+.loadoutsContainer {
+    width: 100%;
+    background: var(--background-dark);
+    padding: 2rem;
+}
+
+.loadouts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navigation {
+    max-width: 1300px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.navigation div {
+    padding: 1rem 2rem;
+    border-radius: 5px;
+}
+
+.navigation div.active p {
+    color: var(--color-primary);
+}
+
+.navigation div:hover {
+    cursor: pointer;
+}
+
+.navigation div:hover p {
+    color: var(--text-light);
+}
+
+.loadout {
+    max-width: 1300px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.loadoutSlots {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.slot {
+    border: 1px solid var(--background-hover);
+    padding: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all var(--animation-duration) ease-in-out;
+}
+
+.slot:hover {
+    background: var(--background-hover);
+}
+
+.slot .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.slot .header h3 {
+    color: var(--color-primary);
+}
+
+.slot .restrictionT {
+    color: rgb(255, 255, 108);
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.slot .restrictionCT {
+    color: rgb(108, 196, 255);
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+}

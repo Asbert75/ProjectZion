@@ -104,7 +104,7 @@ export default function UserForm(props: Props) {
             <TopWave height={'50px'}></TopWave>
 
             <div className={styles.projectName}>
-                <Link href="/"><h2>Project<span>Zion</span></h2></Link>
+                <Link href="/"><h2>Eternal<span>Labs</span></h2></Link>
             </div>
             <div className={[styles.container, errorList.length ? 'shake' : ''].join(" ")} ref={container}>
                 <div className={styles.cancelButtonContainer} onClick={() => router.push('/')}>

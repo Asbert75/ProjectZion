@@ -25,7 +25,7 @@ export const options: NextAuthOptions = {
 
                 try {
                     const response = await UserApi.login(credentials.username, credentials.password);
-                    const role = await RoleApi.getRole(response.roleId); console.log('AUTHORIZE', {response, role});
+                    const role = await RoleApi.getRole(response.roleId);
                     if (!response || response.code && response.code != 200) return null;
                     else {
                         return {
@@ -49,12 +49,11 @@ export const options: NextAuthOptions = {
         signIn: '/signin'
     },
     callbacks: {
-        async jwt({ token, user }) { console.log('jwt', token, user);
+        async jwt({ token, user }) {
             if (user) token.user = user;
             return token;
         },
         async session({ session, token }) {
-            console.log('session', session, token);
             session.user = token.user;
             return session;
         }

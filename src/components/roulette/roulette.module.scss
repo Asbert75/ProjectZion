@@ -1,0 +1,217 @@
+.roulette {
+    background: var(--background-dark);
+    min-height: 1000px;
+    padding: 5rem;
+    margin-bottom: 4rem;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    position: relative;
+    max-width: 1300px;
+    border-radius: 10px;
+    background: rgb(8, 8, 8);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.shadow {
+    width: 100%;
+    height: 200%;
+    position: absolute;
+    top: -50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 10px 0px 25px rgb(0, 0, 0, 0.75) inset;
+}
+
+.shadowreverse {
+    width: 100%;
+    height: 200%;
+    position: absolute;
+    top: -50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: -10px 0px 25px rgb(0, 0, 0, 0.75) inset;
+}
+
+.wrapper .selector {
+    width: 3px;
+    background: rgb(226, 226, 226);
+    left: 50%;
+    height: 100%;
+    transform: translate(-50%, 0%);
+    position: absolute;
+    z-index: 2;
+    box-shadow: 0px 0px 10px rgb(255, 123, 0);
+}
+
+.wrapper .wheel {
+    display: flex;
+}
+
+.wheel .row {
+    display: flex;
+}
+
+.card {
+    height: 75px;
+    width: 75px;
+    margin: 3px;
+    border-radius: 10px;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5em;
+}
+
+.card.red {
+    background: #F95146;
+    background: linear-gradient(45deg, darken(#F95146, 2%) 0%, lighten(#F95146, 2%) 100%);
+    box-shadow: 0px 5px 15px rgba(249, 81, 70, 0.2);
+}
+
+.card.black {
+    background: #2D3035;
+    background: linear-gradient(45deg, darken(#2D3035, 2%) 0%, lighten(#2D3035, 2%) 100%);
+    box-shadow: 0px 5px 15px rgba(45, 48, 53, 0.2);
+}
+
+.card.green {
+    background: #00C74D;
+    background: linear-gradient(45deg, darken(#00C74D, 2%) 0%, lighten(#00C74D, 2%) 100%);
+    box-shadow: 0px 5px 15px rgba(0, 199, 77, 0.2);
+}
+
+.history {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.history .card {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    border-bottom-width: 2px;
+}
+
+.countdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    height: 50px;
+    margin-top: 2rem;
+    text-align: center;
+
+    .timer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        h4:last-of-type {
+            color: var(--color-primary);
+            width: 75px;
+        }
+    }
+
+    h4 {
+        margin-bottom: 0.5rem;
+        color: var(--text-light);
+        font-size: 1.3rem;
+    }
+
+    .progressBar {
+        height: 5px;
+        background: rgba(9, 9, 10, 0.5);
+    }
+
+    .fill {
+        width: 100%;
+        height: 100%;
+        background: #00C74D;
+        transition: background 0.3s ease-in-out;
+
+        &.soon {
+            background: #ffbc2b;
+        }
+        &.urgent {
+            background: #ff1c1c;
+        }
+    }
+}
+
+.betting {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+
+    >div {
+        padding: 1rem;
+
+        button {
+            border-radius: 5px;
+            padding: 1rem;
+            width: 250px;
+            outline: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+            opacity: 0.9;
+
+            &:hover {
+                opacity: 1;
+                transform: translateY(-1px);
+            }
+        }
+    }
+
+    .green {
+        button {
+            background: #00C74D;
+            background: linear-gradient(45deg, darken(#00C74D, 2%) 0%, lighten(#00C74D, 2%) 100%);
+            box-shadow: 0px 5px 15px rgba(0, 199, 77, 0.2);
+        }
+    }
+
+    .red {
+        button {
+            background: #F95146;
+            background: linear-gradient(45deg, darken(#F95146, 2%) 0%, lighten(#F95146, 2%) 100%);
+            box-shadow: 0px 5px 15px rgba(249, 81, 70, 0.2);
+        }
+    }
+
+    .black {
+        button {
+            background: #2D3035;
+            background: linear-gradient(45deg, darken(#2D3035, 2%) 0%, lighten(#2D3035, 2%) 100%);
+            box-shadow: 0px 5px 15px rgba(45, 48, 53, 0.2);
+        }
+    }
+}

@@ -1,109 +1,93 @@
 'use client';
 
-import Image from 'next/image';
-import { useState } from 'react';
+import styles from './loadouts.module.css'
 
-import WeaponApi from '@/api/weapon-api';
+import Image from 'next/image'
+import { useState, useEffect } from 'react'
 
-export default async function Loadouts() {
-    const res = await WeaponApi.getWeapons();
-    console.log({weapons: res});
+import WeaponApi from '@/api/weapon-api'
+import VerticalSpinner from '../vertical-spinner';
 
-    const weapons = [
-        {
-            name: 'AWP',
-            category: 'Rifles'
-        }, {
-            name: 'AK-47',
-            category: 'Rifles'
-        }, {
-            name: 'M4A4',
-            category: 'Rifles'
-        }, {
-            name: 'M4A1S',
-            category: 'Rifles'
-        }, {
-            name: 'AUG',
-            category: 'Rifles'
-        }, {
-            name: 'Famas',
-            category: 'Rifles'
-        }, {
-            name: 'SG 553',
-            category: 'Rifles'
-        }, {
-            name: 'Galil',
-            category: 'Rifles'
-        }, {
-            name: 'USP-S',
-            category: 'Pistols'
-        }, {
-            name: 'P2000',
-            category: 'Pistols'
-        }, {
-            name: 'Glock-18',
-            category: 'Pistols'
-        }, {
-            name: 'Desert Eagle',
-            category: 'Pistols'
-        }, {
-            name: 'R8 Revolver',
-            category: 'Pistols'
-        }, {
-            name: 'P250',
-            category: 'Pistols'
-        }, {
-            name: 'Five-SeveN',
-            category: 'Pistols'
-        }, {
-            name: 'Tec-9',
-            category: 'Pistols'
-        }, {
-            name: 'CZ75-Auto',
-            category: 'Pistols'
-        }, {
-            name: 'Dual Berettas',
-            category: 'Pistols'
+export default function Loadouts() {
+    useEffect(() => {
+        const fetchData = async () => {
+            const categories = await WeaponApi.getCategories()
+            const restrictions = await WeaponApi.getRestrictionTypes()
+            const weapons = await WeaponApi.getWeapons()
+
+            const weaponList = weapons.map((weapon: any) => {
+
+                return {
+                    category: categories.find((category: any) => category.id === weapon.category).name,
+                    restrictionType: restrictions.find((restriction: any) => restriction.id === weapon.restrictionType)?.name,
+                    price: weapon.price,
+                    updated: weapon.updated,
+                    priority: weapon.priority,
+                    name: weapon.name,
+                    id: weapon.id,
+                    image: weapon.image
+                }
+            });
+
+            setCategories(categories)
+            setWeapons(weaponList)
+            setSelectedWeaponCategory(categories[0].name)
+
+            setIsLoading(false)
         }
-    ]
 
-    const weaponCategories = [
-        'Rifles', 'Pistols', 'Mid Tier'
-    ]
-    const [selectedWeaponCategory, setSelectedWeaponCategory] = useState(weaponCategories[0]);
+        fetchData();
+    }, [])
+
+
+    const [weapons, setWeapons] = useState([])
+    const [categories, setCategories] = useState([])
+    const [selectedWeaponCategory, setSelectedWeaponCategory] = useState('Rifles')
+    const [isLoading, setIsLoading] = useState(true)
 
     return (
-        <div className="loadouts-container">
-            <div className="loadouts" >
-                <div className="navigation">
-                    <div><p>Loadout 1</p></div>
-                    <div><p>Loadout 2</p></div>
-                    <div className="active"><p>Loadout 3</p></div>
-                    <div><p>Loadout 4</p></div>
-                    <div><p>Loadout 5</p></div>
-                    <div><p>Loadout 6</p></div>
-                </div>
-
-                <div className="loadout">
-                    <h3>Loadout 3</h3>
-
-                    <select value={selectedWeaponCategory} onChange={(e) => setSelectedWeaponCategory(e.target.value)}>
-                        {weaponCategories.map(category => {
-                            return (<option key={category} value={category}>{category}</option>)
-                        })}
-                    </select>
-
-                    <div className="loadout-slots">
-                        {weapons.filter((weapon) => weapon.category === selectedWeaponCategory).map((weapon, i) => {
-                            return (<div key={i} className="slot">
-                                <h4>{weapon.name}</h4>
-                                <p className="text-muted">{weapon.category}</p>
-                                <Image src={`/images/weapons/${weapon.category}/${weapon.name}.png`} alt={weapon.name} width={260} height={200} />
-                            </div>)
+        <div className={styles.loadoutsContainer}>
+            {isLoading && <VerticalSpinner></VerticalSpinner>}
+            {!isLoading &&
+                <div className={styles.loadouts}>
+                    <div className={styles.navigation}>
+                        {categories.map(category => {
+                            return (
+                                <div key={category.id} className={selectedWeaponCategory === category.name ? styles.active : ''} onClick={() => setSelectedWeaponCategory(category.name)}>
+                                    <p>{category.name}</p>
+                                </div>
+                            )
                         })}
                     </div>
-                </div>
-            </div >
+
+                    <div className={styles.loadout}>
+                        <div className={styles.loadoutSlots}>
+                            {weapons.filter((weapon) => weapon.category === selectedWeaponCategory).map((weapon, i) => {
+                                return (
+                                    <div key={i} className={styles.slot}>
+                                        <div className={styles.header}>
+                                            <div>
+                                                <h4 className="text-muted">
+                                                    {weapon.name}
+                                                    {weapon.restrictionType &&
+                                                        <span className={weapon.restrictionType === 'T' ? styles.restrictionT : weapon.restrictionType === 'CT' ? styles.restrictionCT : ''}>
+                                                            ({weapon.restrictionType})
+                                                        </span>}
+                                                </h4>
+                                                <p>{weapon.category}</p>
+                                            </div>
+                                            <div>
+                                                <h3>${weapon.price}</h3>
+                                            </div>
+                                        </div>
+                                        <Image src={`http://127.0.0.1:8090/api/files/weapons/${weapon.id}/${weapon.image}?thumb=260x200`} alt={weapon.name} width={260} height={200} />
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                </div >
+            }
         </div>
     );
 }
