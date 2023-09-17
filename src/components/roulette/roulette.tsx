@@ -1,7 +1,7 @@
 'use client';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFlask } from '@fortawesome/free-solid-svg-icons';
+import { faCoins } from '@fortawesome/free-solid-svg-icons';
 import styles from './roulette.module.scss'
 
 import Image from 'next/image'
@@ -15,7 +15,7 @@ export default function Roulette() {
     const rows = [...Array(29)]
     const [winningHistory, setWinningHistory] = useState<number[]>([])
     const [timer, setTimer] = useState('')
-    const [countdownLength, setCountdownLength] = useState(5000)
+    const [countdownLength, setCountdownLength] = useState(15000)
     const [fillPercentage, setFillPercentage] = useState(0)
     const [isRolling, setIsRolling] = useState(false)
 
@@ -82,7 +82,8 @@ export default function Roulette() {
             var resetTo = -(position * card + randomize);
             wheel.current.style.transform = `translate3d(${resetTo}px, 0px, 0px)`
 
-            setWinningHistory(currentHistory => [...currentHistory, winningNumber]);
+            setWinningHistory(currentHistory => [winningNumber, ...currentHistory]);
+
             setTimeout(() => {
                 setIsRolling(false)
                 startCountdown()
@@ -94,12 +95,10 @@ export default function Roulette() {
         <section className={styles.roulette}>
             <div className={styles.container}>
                 <div className={styles.history}>
-                    <p className='text-muted'>History:</p>
-                    {winningHistory.map((n, i) => {
+                    {winningHistory.slice(0, 10).map((n, i) => {
                         return (
-                            <div key={i} style={{fontSize: '0.5rem'}}
+                            <div key={i} style={{ fontSize: '0.5rem' }}
                                 className={n === 0 ? `${styles.card} ${styles.green}` : (n > 0 && n < 8) ? `${styles.card} ${styles.red}` : `${styles.card} ${styles.black}`}>
-                                    {n}
                             </div>
                         )
                     })}
@@ -112,21 +111,21 @@ export default function Roulette() {
                         {rows.map((_, i) => {
                             return (
                                 <div key={i} className={styles.row}>
-                                    <div className={[styles.card, styles.red].join(" ")}></div>
-                                    <div className={[styles.card, styles.black].join(" ")}></div>
-                                    <div className={[styles.card, styles.red].join(" ")}></div>
-                                    <div className={[styles.card, styles.black].join(" ")}></div>
-                                    <div className={[styles.card, styles.red].join(" ")}></div>
-                                    <div className={[styles.card, styles.black].join(" ")}></div>
-                                    <div className={[styles.card, styles.red].join(" ")}></div>
-                                    <div className={[styles.card, styles.green].join(" ")}></div>
-                                    <div className={[styles.card, styles.black].join(" ")}></div>
-                                    <div className={[styles.card, styles.red].join(" ")}></div>
-                                    <div className={[styles.card, styles.black].join(" ")}></div>
-                                    <div className={[styles.card, styles.red].join(" ")}></div>
-                                    <div className={[styles.card, styles.black].join(" ")}></div>
-                                    <div className={[styles.card, styles.red].join(" ")}></div>
-                                    <div className={[styles.card, styles.black].join(" ")}></div>
+                                    <div className={[styles.card, styles.red].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.black].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.red].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.black].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.red].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.black].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.red].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.green].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.black].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.red].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.black].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.red].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.black].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.red].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
+                                    <div className={[styles.card, styles.black].join(" ")}><FontAwesomeIcon icon={faCoins} /></div>
                                 </div>
                             )
                         })}
