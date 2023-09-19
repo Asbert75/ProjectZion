@@ -103,3 +103,15 @@ input:focus::placeholder {
   pointer-events: none;
   opacity: 0.8;
 }
+
+
+/* Inputs */
+select {
+  max-width: 300px;
+  padding: 1rem 1.5rem;
+  background: var(--background-dark);
+  color: var(--text-muted);
+  border: 1px solid var(--text-muted);
+  outline: none;
+  border-radius: 5px;
+}

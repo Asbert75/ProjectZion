@@ -1,6 +1,6 @@
-import PocketBase from 'pocketbase';
-// const connection = new PocketBase('http://127.0.0.1:8090');
-const connection = new PocketBase(process.env.BACKEND_URL)
+import PocketBase from 'pocketbase'
+const connection = new PocketBase('http://127.0.0.1:8090')
+// const connection = new PocketBase(process.env.BACKEND_URL)
 
 const UserApi = {
     login: async (username: string, password: string) => {

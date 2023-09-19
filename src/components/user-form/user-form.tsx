@@ -101,10 +101,10 @@ export default function UserForm(props: Props) {
 
     return (
         <div className={styles.backgroundContainer}>
-            <TopWave></TopWave>
+            <TopWave height={'50px'}></TopWave>
 
             <div className={styles.projectName}>
-                <Link href="/"><h2>Project<span>Zion</span></h2></Link>
+                <Link href="/"><h2>Eternal<span>Labs</span></h2></Link>
             </div>
             <div className={[styles.container, errorList.length ? 'shake' : ''].join(" ")} ref={container}>
                 <div className={styles.cancelButtonContainer} onClick={() => router.push('/')}>
@@ -178,7 +178,7 @@ export default function UserForm(props: Props) {
                 {props.type === 'signin' && <div className={[styles.signupContainer, isLoading ? 'disabled' : ''].join(" ")}><Link href="/signup">Or Sign Up</Link></div>}
             </div>
 
-            <BottomWave></BottomWave>
+            <BottomWave height={'100px'} width={'calc(105% + 1.3px)'}></BottomWave>
         </div>
     )
 }

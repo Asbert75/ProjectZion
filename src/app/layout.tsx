@@ -10,8 +10,8 @@ import Loading from './loading'
 
 
 export const metadata: Metadata = {
-  title: 'Project Zion',
-  description: 'FullStack Practice App, using NextJS and an MSSQL backend.',
+  title: 'EternalLabs',
+  description: 'CSGO Gambling',
 }
 
 export default function RootLayout({
